@@ -1,18 +1,29 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
+
+import routes from "./routes";
+
+const PORT = 3000;
 
 const app = express();
 // -------------------------
 app.use(morgan("dev"));
+// -------------------------
+app.use(cors());
+//--------------------------
+app.use(routes);
+
+// -------------------------
+function getUserName() {
+  return "NalbertC";
+}
+
+const username = getUserName();
 
 //--------------------------
-app.get("/", (req, res) => {
-  return res.send("Hello word!");
-});
-
-//--------------------------
-app.listen(3333, () => {
-  console.log("Servidor iniciado na porta 3333");
+app.listen(PORT, () => {
+  console.log(`Servidor iniciado na porta ${PORT}`);
 });
 
 // Babel, Sucraze

@@ -8,9 +8,9 @@ Adiciona tipagem ao JavaScript.
 
 Adicionar dependências e as suas tipagens:
 
-`yarn add express`
+Dependencia - `yarn add express`
 
-`yarn add @types/express -D`
+tipagem - `yarn add @types/express -D`
 
 `yarn tsc src/index.ts`
 
