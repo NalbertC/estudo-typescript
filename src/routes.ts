@@ -1,17 +1,17 @@
 import { Router } from "express";
 import UserController from "./controllers/UserController";
+import ConsumeController from "./controllers/ConsumeController";
+import ReposController from "./controllers/ReposController";
 
 const routes = Router();
 
 //--------------------------
-routes.get("/", (req, res) => {
-  return res.send("Hello word! 2");
-});
+routes.get("/api", ConsumeController.index);
 
 //--------------------------
-routes.get("/users", UserController.index);
-routes.post("/users", UserController.create);
+routes.get("/users/:user", UserController.index);
 
 //--------------------------
+routes.get("/users/:user/repos", ReposController.index);
 
 export default routes;

@@ -2,30 +2,32 @@ import { Request, response, Response } from "express";
 import axios from "axios";
 import { url } from "./ConsumeController";
 
-type TUser = {
-  login: string;
+//-------------------------
+type TRepos = {
   id: number;
   name: string;
-  avatar: string;
-  public_repos: string;
+  url: string;
+  language: string;
 };
 
+//-------------------------
 export default {
   async index(req: Request, res: Response) {
     const { user } = req.params;
 
     axios
-      .get(`${url}/${user}`)
+      .get(`${url}/${user}/repos`)
       .then((response) => response.data)
       .then((data) => {
-        return res.json(<TUser>{
-          id: data.id,
-          login: data.login,
-          name: data.name,
-          avatar: data.avatar_url,
-          public_repos: data.public_repos,
-        });
+        return res.json();
       })
       .catch((error) => console.error(error));
   },
 };
+
+// {
+//     id: data.id,
+//     name: data.name,
+//     url: data.url,
+//     language: data.language,
+//   }

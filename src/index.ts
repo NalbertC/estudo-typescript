@@ -14,13 +14,6 @@ app.use(cors());
 //--------------------------
 app.use(routes);
 
-// -------------------------
-function getUserName() {
-  return "NalbertC";
-}
-
-const username = getUserName();
-
 //--------------------------
 app.listen(PORT, () => {
   console.log(`Servidor iniciado na porta ${PORT}`);
