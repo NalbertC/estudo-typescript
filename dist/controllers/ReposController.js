@@ -14,22 +14,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const ConsumeController_1 = require("./ConsumeController");
+//-------------------------
 exports.default = {
     index(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { user } = req.params;
             axios_1.default
-                .get(`${ConsumeController_1.url}/${user}`)
+                .get(`${ConsumeController_1.url}/${user}/repos`)
                 .then((response) => response.data)
                 .then((data) => {
-                return res.json({
-                    id: data.id,
-                    login: data.login,
-                    name: data.name,
-                    avatar: data.avatar_url,
-                    html_url: data.html_url,
-                    public_repos: data.public_repos,
+                const repos = data.map((repo) => {
+                    return {
+                        id: repo.id,
+                        name: repo.name,
+                        url: repo.url,
+                        html_url: repo.html_url,
+                        language: repo.language,
+                    };
                 });
+                return res.json(repos);
             })
                 .catch((error) => console.error(error));
         });

@@ -7,6 +7,7 @@ type TUser = {
   id: number;
   name: string;
   avatar: string;
+  html_url: string;
   public_repos: string;
 };
 
@@ -23,6 +24,7 @@ export default {
           login: data.login,
           name: data.name,
           avatar: data.avatar_url,
+          html_url: data.html_url,
           public_repos: data.public_repos,
         });
       })

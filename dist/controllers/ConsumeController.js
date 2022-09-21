@@ -12,24 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.url = void 0;
 const axios_1 = __importDefault(require("axios"));
-const ConsumeController_1 = require("./ConsumeController");
+exports.url = "https://api.github.com/users";
 exports.default = {
     index(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { user } = req.params;
             axios_1.default
-                .get(`${ConsumeController_1.url}/${user}`)
-                .then((response) => response.data)
-                .then((data) => {
-                return res.json({
-                    id: data.id,
-                    login: data.login,
-                    name: data.name,
-                    avatar: data.avatar_url,
-                    html_url: data.html_url,
-                    public_repos: data.public_repos,
-                });
+                .get(exports.url)
+                .then((response) => {
+                return res.json(response.data);
             })
                 .catch((error) => console.error(error));
         });

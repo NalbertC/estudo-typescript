@@ -3,10 +3,11 @@ import axios from "axios";
 import { url } from "./ConsumeController";
 
 //-------------------------
-type TRepos = {
+type TRepo = {
   id: number;
   name: string;
   url: string;
+  html_url: string;
   language: string;
 };
 
@@ -19,15 +20,18 @@ export default {
       .get(`${url}/${user}/repos`)
       .then((response) => response.data)
       .then((data) => {
-        return res.json();
+        const repos = data.map((repo: TRepo) => {
+          return <TRepo>{
+            id: repo.id,
+            name: repo.name,
+            url: repo.url,
+            html_url: repo.html_url,
+            language: repo.language,
+          };
+        });
+
+        return res.json(repos);
       })
       .catch((error) => console.error(error));
   },
 };
-
-// {
-//     id: data.id,
-//     name: data.name,
-//     url: data.url,
-//     language: data.language,
-//   }
